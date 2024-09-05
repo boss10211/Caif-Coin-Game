@@ -13,5 +13,5 @@ document.getElementById('coin').addEventListener('click', () => {
 });
 
 document.getElementById('winCoinsButton').addEventListener('click', () => {
-    window.location.href = '../caif coin game/caif coin game.html'; // Путь к вашей другой игре
+    window.location.href = '../caif coin game.html'; // Путь к вашей другой игре
 });
