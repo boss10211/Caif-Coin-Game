@@ -17,7 +17,7 @@ body {
 
 h1 {
     color: #ff6347; /* Цвет заголовка */
-    font-family: 'Calamity', Courier, monospace; /* Шрифт заголовка */
+    font-family: 'Courier New', Courier, monospace; /* Шрифт заголовка */
 }
 
 p {
@@ -26,8 +26,8 @@ p {
 }
 
 .coin {
-    width: 250px;
-    height: 250px;
+    width: 100px;
+    height: 100px;
     background-image: url('https://umbphotos.ag/images/86e5ef92ff09ce3a54bf032af46a2806.png');
     background-size: cover;
     border-radius: 50%;
