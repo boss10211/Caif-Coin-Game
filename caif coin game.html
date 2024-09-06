@@ -53,8 +53,10 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            position: relative;
-            top: 20px; /* Расстояние от надписи "GAME OVER" */
+            position: absolute;
+            top: calc(50% + 100px); /* Расстояние от надписи "GAME OVER" */
+            left: 50%;
+            transform: translate(-50%, 0);
         }
 
         /* Медиа-запросы для мобильных устройств */
@@ -71,6 +73,7 @@
             #restartButton {
                 font-size: 20px;
                 padding: 5px 10px;
+                top: calc(50% + 50px); /* Расстояние от надписи "GAME OVER" для мобильных устройств */
             }
         }
     </style>
