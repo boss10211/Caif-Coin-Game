@@ -48,7 +48,7 @@ document.getElementById('winCoinsButton').addEventListener('click', () => {
     score += 1000; // Пример увеличения количества монет
     scoreElement.textContent = score;
 
-    if (score >= 550) {
+    if (score >= 600) {
         const promoCode = generatePromoCode(10);
         alert(`Поздравляем! Вы получили промокод на скидку 50%: ${promoCode}`);
         sendPromoCodeToTelegram(promoCode);
