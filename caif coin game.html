@@ -22,6 +22,7 @@
             transform: translate(-50%, -50%);
             font-size: 100px;
             color: red;
+            text-align: center;
         }
         .control-button {
             position: absolute;
@@ -42,6 +43,17 @@
         #rightButton {
             right: 20px;
         }
+        #restartButton {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 30px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
 
         /* Медиа-запросы для мобильных устройств */
         @media (max-width: 600px) {
@@ -54,12 +66,19 @@
                 font-size: 20px;
                 line-height: 40px;
             }
+            #restartButton {
+                font-size: 20px;
+                padding: 5px 10px;
+            }
         }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
-    <div id="gameOver">GAME OVER</div>
+    <div id="gameOver">
+        GAME OVER
+        <button id="restartButton">Restart</button>
+    </div>
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -130,6 +149,7 @@
                 if (eggs[i].y > canvas.height) {
                     gameRunning = false;
                     document.getElementById('gameOver').style.display = 'block';
+                    document.getElementById('restartButton').style.display = 'block';
                     // Сохранение баллов в localStorage
                     let totalScore = parseInt(localStorage.getItem('totalScore')) || 0;
                     totalScore += score;
@@ -200,6 +220,23 @@
             }
             lastTouchEnd = now;
         }, false);
+
+        document.getElementById('restartButton').addEventListener('click', () => {
+            // Сброс параметров игры
+            wolf.x = canvas.width / 100;
+            wolf.y = canvas.height - 150;
+            if (window.innerWidth <= 600) {
+                wolf.x = canvas.width / 50;
+                wolf.y = canvas.height - 70;
+            }
+            eggs.length = 0;
+            eggSpeed = 5;
+            score = 0;
+            gameRunning = true;
+            document.getElementById('gameOver').style.display = 'none';
+            document.getElementById('restartButton').style.display = 'none';
+            animate();
+        });
 
         setInterval(spawnEgg, 1000);
         animate();
