@@ -6,14 +6,14 @@
     <title>СAIF COIN GAMES</title>
     <style>
         body { margin: 0; overflow: hidden; }
-        canvas { display: block; }
+        canvas { display: block; width: 100vw; height: 100vh; }
         #gameOver {
             display: none;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 100px;
+            font-size: 50px;
             color: red;
         }
     </style>
@@ -127,8 +127,34 @@
             if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') wolf.dx = 0;
         });
 
-        setInterval(spawnEgg, 1000);
-        animate();
-    </script>
-</body>
-</html>
+        canvas.addEventListener('touchstart', handleTouchStart);
+        canvas.addEventListener('touchmove', handleTouchMove);
+        canvas.addEventListener('touchend', handleTouchEnd);
+
+        function handleTouchStart(event) {
+            const touch = event.touches[0];
+            if (touch.clientX < canvas.width / 2) {
+                wolf.dx = -50;
+            } else {
+                wolf.dx = 50;
+            }
+        }
+
+        function handleTouchMove(event) {
+            // Обработка движения касания
+        }
+
+        function handleTouchEnd(event) {
+            wolf.dx = 0;
+        }
+
+        canvas.addEventListener('mousedown', handleMouseDown);
+        canvas.addEventListener('mousemove', handleMouseMove);
+        canvas.addEventListener('mouseup', handleMouseUp);
+
+        function handleMouseDown(event) {
+            if (event.clientX < canvas.width / 2) {
+                wolf.dx = -50;
+            } else {
+                wolf.dx = 50;
+            }
