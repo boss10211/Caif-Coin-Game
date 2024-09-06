@@ -1,4 +1,4 @@
-let score = 0;
+et score = 0;
 
 // Загрузка баллов из localStorage
 if (localStorage.getItem('totalScore')) {
