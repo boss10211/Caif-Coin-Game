@@ -35,6 +35,19 @@
         #rightButton {
             right: 20px;
         }
+
+        /* Медиа-запросы для мобильных устройств */
+        @media (max-width: 600px) {
+            #gameOver {
+                font-size: 50px;
+            }
+            .control-button {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+                line-height: 40px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -57,19 +70,35 @@
         const eggImage = new Image();
         eggImage.src = 'https://umbphotos.ag/images/03bb116d635dff5a648e31a0172da1e7.png'; 
 		
-        const wolf = {
+        let wolf = {
             x: canvas.width / 100,
             y: canvas.height - 150,
             width: 250,
             height: 250,
             dx: 0
         };
+
+        // Изменение размеров для мобильных устройств
+        if (window.innerWidth <= 600) {
+            wolf = {
+                x: canvas.width / 100,
+                y: canvas.height - 100,
+                width: 150,
+                height: 150,
+                dx: 0
+            };
+        }
 		
         const eggs = [];
-        const eggRadius = 100;
+        let eggRadius = 100;
         const eggSpeed = 5;
         let score = 0;
         let gameRunning = true;
+
+        // Изменение размеров для мобильных устройств
+        if (window.innerWidth <= 600) {
+            eggRadius = 50;
+        }
 
         function drawBackground() {
             ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
