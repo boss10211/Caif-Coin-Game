@@ -6,21 +6,42 @@
     <title>СAIF COIN GAMES</title>
     <style>
         body { margin: 0; overflow: hidden; }
-        canvas { display: block; width: 100vw; height: 100vh; }
+        canvas { display: block; }
         #gameOver {
             display: none;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 50px;
+            font-size: 100px;
             color: red;
+        }
+        .control-button {
+            position: absolute;
+            bottom: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            user-select: none;
+        }
+        #leftButton {
+            left: 20px;
+        }
+        #rightButton {
+            right: 20px;
         }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
     <div id="gameOver">GAME OVER</div>
+    <div id="leftButton" class="control-button">⬅️</div>
+    <div id="rightButton" class="control-button">➡️</div>
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -127,46 +148,21 @@
             if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') wolf.dx = 0;
         });
 
-        canvas.addEventListener('touchstart', handleTouchStart);
-        canvas.addEventListener('touchmove', handleTouchMove);
-        canvas.addEventListener('touchend', handleTouchEnd);
+        document.getElementById('leftButton').addEventListener('touchstart', () => {
+            wolf.dx = -50;
+        });
 
-        function handleTouchStart(event) {
-            const touch = event.touches[0];
-            if (touch.clientX < canvas.width / 2) {
-                wolf.dx = -50;
-            } else {
-                wolf.dx = 50;
-            }
-        }
-
-        function handleTouchMove(event) {
-            // Обработка движения касания
-        }
-
-        function handleTouchEnd(event) {
-            wolf.dx = 2;
-        }
-
-        canvas.addEventListener('mousedown', handleMouseDown);
-        canvas.addEventListener('mousemove', handleMouseMove);
-        canvas.addEventListener('mouseup', handleMouseUp);
-
-        function handleMouseDown(event) {
-            if (event.clientX < canvas.width / 2) {
-                wolf.dx = -50;
-            } else {
-                wolf.dx = 50;
-            }
-        }
-
-        function handleMouseMove(event) {
-            // Обработка движения мыши
-        }
-
-        function handleMouseUp(event) {
+        document.getElementById('leftButton').addEventListener('touchend', () => {
             wolf.dx = 0;
-        }
+        });
+
+        document.getElementById('rightButton').addEventListener('touchstart', () => {
+            wolf.dx = 50;
+        });
+
+        document.getElementById('rightButton').addEventListener('touchend', () => {
+            wolf.dx = 0;
+        });
 
         setInterval(spawnEgg, 1000);
         animate();
