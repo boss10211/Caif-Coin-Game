@@ -10,52 +10,9 @@
     <div class="game-container">
         <h1>Caif Coin Game</h1>
         <div class="coin" id="coin"></div>
-        <p>Количество монет: <span id="score">0</span></p>
+        <p>Количество  монет: <span id="score">0</span></p> <!-- Изменили текст здесь -->
         <button id="winCoinsButton">Выиграть монеты</button>
     </div>
-    <script>
-        document.getElementById('winCoinsButton').addEventListener('click', function() {
-            let score = parseInt(document.getElementById('score').innerText);
-            score += 10; // Пример увеличения баллов
-            document.getElementById('score').innerText = score;
-
-            if (score >= 100) { // Условие для показа всплывающего окна
-                let promoCode = generatePromoCode();
-                alert(`Ваш приз: скидка 50%! Ваш промокод: ${promoCode}`);
-                sendPromoCodeToTelegram(promoCode);
-            }
-        });
-
-        function generatePromoCode() {
-            return 'PROMO' + Math.random().toString(36).substring(2, 10).toUpperCase();
-        }
-
-        function sendPromoCodeToTelegram(promoCode) {
-            const userId = '@Boos_CJ_228'; // Замените на ID пользователя
-            const botToken = '7234287467:AAGaT2z1qI-rdIf2RzTZmJRrqnqK5z4pJb4'; // Замените на токен вашего бота
-
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    chat_id: userId,
-                    text: `Новый промокод для пользователя: ${promoCode}`
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.ok) {
-                    console.log('Промокод успешно отправлен в Telegram');
-                } else {
-                    console.error('Ошибка при отправке промокода в Telegram:', data);
-                }
-            })
-            .catch(error => {
-                console.error('Ошибка при отправке запроса:', error);
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
