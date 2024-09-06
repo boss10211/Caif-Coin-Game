@@ -12,3 +12,6 @@ document.getElementById('coin').addEventListener('click', () => {
     localStorage.setItem('totalScore', score);
 });
 
+document.getElementById('winCoinsButton').addEventListener('click', () => {
+    window.location.href = 'caif coin game.html'; // Путь к вашей другой игре
+});
