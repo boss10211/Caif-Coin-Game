@@ -26,8 +26,8 @@ p {
 }
 
 .coin {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     background-image: url('https://umbphotos.ag/images/86e5ef92ff09ce3a54bf032af46a2806.png');
     background-size: cover;
     border-radius: 50%;
