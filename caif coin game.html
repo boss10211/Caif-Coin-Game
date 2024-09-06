@@ -96,7 +96,7 @@
 		
         const eggs = [];
         let eggRadius = 100;
-        const eggSpeed = 5;
+        let eggSpeed = 5;
         let score = 0;
         let gameRunning = true;
 
@@ -144,6 +144,10 @@
                     eggs.splice(i, 1);
                     i--;
                     score++;
+                    // Увеличение скорости каждые 10 очков
+                    if (score % 10 === 0) {
+                        eggSpeed += 2;
+                    }
                 }
             }
         }
