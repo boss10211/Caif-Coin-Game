@@ -84,6 +84,7 @@
         GAME OVER
         <button id="restartButton">Restart</button>
     </div>
+    <audio id="catchSound" src="catch.mp3"></audio>
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -169,6 +170,7 @@
                     eggs.splice(i, 1);
                     i--;
                     score++;
+                    document.getElementById('catchSound').play(); // Воспроизведение звука
                     // Увеличение скорости каждые 10 очков
                     if (score % 10 === 0) {
                         eggSpeed += 2;
@@ -247,4 +249,4 @@
         animate();
     </script>
 </body> 
-</html> 
+</html>
