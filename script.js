@@ -43,8 +43,26 @@ function generatePromoCode() {
 }
 
 function sendTelegramMessage(reward, promoCode) {
-    const adminChatId = '7234287467:AAGaT2z1qI-rdIf2RzTZmJRrqnqK5z4pJb4';
-    const botToken = '5920944588';
+    const adminChatId = 'YOUR_ADMIN_CHAT_ID';
+    const botToken = 'YOUR_BOT_TOKEN';
     const message = `Игрок выиграл ${reward}. Промокод: ${promoCode}`;
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${adminChatId}&text=${encodeURIComponent(message)}`);
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${adminChatId}&text=${encodeURIComponent(message)}`;
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.ok) {
+                console.log('Message sent successfully');
+            } else {
+                console.error('Error sending message:', data);
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
 }
