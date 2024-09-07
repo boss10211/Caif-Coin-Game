@@ -16,13 +16,13 @@ body {
 }
 
 h1 {
-    color: #ff6347; /* Цвет заголовка */
-    font-family: 'Courier New', Courier, monospace; /* Шрифт заголовка */
+    color: #ff6347;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 p {
-    color: #4682b4; /* Цвет текста */
-    font-family: 'Verdana', sans-serif; /* Шрифт текста */
+    color: #4682b4;
+    font-family: 'Verdana', sans-serif;
 }
 
 .coin {
