@@ -1,16 +1,16 @@
 let score = 0;
 const prizes = [
-    { points: 1510, reward: '5% скидка', code: generatePromoCode() },
-    { points: 1520, reward: '10% скидка', code: generatePromoCode() },
-    { points: 1530, reward: '20% скидка', code: generatePromoCode() },
-    { points: 1540, reward: '25% скидка', code: generatePromoCode() },
-    { points: 1550, reward: '50% скидка', code: generatePromoCode() },
-    { points: 1560, reward: '0.5 грамм', code: generatePromoCode() },
-    { points: 1570, reward: '0.7 грамм', code: generatePromoCode() },
-    { points: 1580, reward: '1 грамм', code: generatePromoCode() }
+    { points: 1500, reward: '5% скидка', code: generatePromoCode() },
+    { points: 1510, reward: '10% скидка', code: generatePromoCode() },
+    { points: 1520, reward: '20% скидка', code: generatePromoCode() },
+    { points: 1530, reward: '25% скидка', code: generatePromoCode() },
+    { points: 1540, reward: '50% скидка', code: generatePromoCode() },
+    { points: 1550, reward: '0.5 грамм', code: generatePromoCode() },
+    { points: 1560, reward: '0.7 грамм', code: generatePromoCode() },
+    { points: 1570, reward: '1 грамм', code: generatePromoCode() }
 ];
 
-const telegramBotToken = '7234287467:AAGaT2z1qI-rdIf2RzTZmJRrqnqK5z4pJb4'';
+const telegramBotToken = '7234287467:AAGaT2z1qI-rdIf2RzTZmJRrqnqK5z4pJb4';
 const adminChatId = '5920944588';
 
 function generatePromoCode() {
