@@ -31,10 +31,15 @@ document.getElementById('winCoinsButton').addEventListener('click', () => {
 
 document.getElementById('achievementsButton').addEventListener('click', () => {
     displayAchievements();
+    document.getElementById('achievementsModal').style.display = 'block';
 });
 
 document.getElementById('closeModalButton').addEventListener('click', () => {
     document.getElementById('prizeModal').style.display = 'none';
+});
+
+document.getElementById('closeAchievementsButton').addEventListener('click', () => {
+    document.getElementById('achievementsModal').style.display = 'none';
 });
 
 function checkForPrize() {
@@ -46,7 +51,6 @@ function checkForPrize() {
             achievements.push({ reward: prize.reward, promoCode: promoCode });
             localStorage.setItem('achievements', JSON.stringify(achievements));
             sendTelegramMessage(prize.reward, promoCode);
-            displayAchievements();
             break;
         }
     }
