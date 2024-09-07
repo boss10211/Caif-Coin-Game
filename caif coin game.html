@@ -245,8 +245,8 @@
             animate();
         });
 
-        // Инициализация звука на мобильных устройствах
-        document.body.addEventListener('touchstart', () => {
+        // Воспроизведение звука при первом касании экрана
+        document.addEventListener('touchstart', () => {
             document.getElementById('catchSound').play().catch(error => {
                 console.log('Автовоспроизведение звука заблокировано: ', error);
             });
