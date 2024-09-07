@@ -21,21 +21,21 @@ function checkForPrizes(score) {
     let prizeNotification = document.getElementById('prizeNotification');
     prizeNotification.classList.remove('hidden');
     
-    if (score >= 1150) {
+    if (score = 1150) {
         prizeNotification.textContent = 'Поздравляем! Вы выиграли 1 грамм.';
-    } else if (score >= 1100) {
+    } else if (score = 1100) {
         prizeNotification.textContent = 'Поздравляем! Вы выиграли 0.7 грамм.';
-    } else if (score >= 1050) {
+    } else if (score = 1050) {
         prizeNotification.textContent = 'Поздравляем! Вы выиграли 0.5 грамм.';
-    } else if (score >= 1000) {
+    } else if (score>= 1000) {
         prizeNotification.textContent = 'Поздравляем! Вы получили 50% скидку.';
-    } else if (score >= 950) {
+    } else if (score = 950) {
         prizeNotification.textContent = 'Поздравляем! Вы получили 25% скидку.';
-    } else if (score >= 900) {
+    } else if (score = 900) {
         prizeNotification.textContent = 'Поздравляем! Вы получили 20% скидку.';
-    } else if (score >= 850) {
+    } else if (score = 850) {
         prizeNotification.textContent = 'Поздравляем! Вы получили 10% скидку.';
-    } else if (score >= 750) {
+    } else if (score = 750) {
         prizeNotification.textContent = 'Поздравляем! Вы получили 5% скидку.';
     } else {
         prizeNotification.classList.add('hidden');
