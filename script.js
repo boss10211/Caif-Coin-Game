@@ -34,7 +34,7 @@ function checkPrizes(score) {
         message = `Поздравляем! Вы получили 20% скидку! Ваш промокод: ${promoCode}`;
     } else if (score >= 50000) {
         message = `Поздравляем! Вы получили 10% скидку! Ваш промокод: ${promoCode}`;
-    } else if (score >= 700) {
+    } else if (score >= 750) {
         message = `Поздравляем! Вы получили 5% скидку! Ваш промокод: ${promoCode}`;
     }
     if (message) {
