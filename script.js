@@ -10,8 +10,8 @@ const prizes = [
     { points: 3000000, reward: '1 грамм', code: generatePromoCode() }
 ];
 
-const telegramBotToken = '7234287467:AAGaT2z1qI-rdIf2RzTZmJRrqnqK5z4pJb4';
-const adminChatId = '5920944588';
+const telegramBotToken = 'YOUR_TELEGRAM_BOT_TOKEN';
+const adminChatId = 'ADMIN_CHAT_ID';
 
 function generatePromoCode() {
     return 'PROMO-' + Math.random().toString(36).substr(2, 9).toUpperCase();
@@ -55,6 +55,7 @@ function updatePrizes() {
 
 function sendTelegramMessage(prize) {
     const message = `Игрок получил приз: ${prize.points} очков - ${prize.reward} (Промокод: ${prize.code})`;
+    console.log('Отправка сообщения в Telegram:', message); // Отладка
     fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
         method: 'POST',
         headers: {
@@ -76,4 +77,4 @@ function sendTelegramMessage(prize) {
     .catch(error => {
         console.error('Ошибка:', error);
     });
-} 
+}
