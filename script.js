@@ -1,13 +1,13 @@
 let score = 0;
 const prizes = [
-    { points: 10000, reward: '5% скидка', code: generatePromoCode() },
-    { points: 50000, reward: '10% скидка', code: generatePromoCode() },
-    { points: 100000, reward: '20% скидка', code: generatePromoCode() },
-    { points: 250000, reward: '25% скидка', code: generatePromoCode() },
-    { points: 500000, reward: '50% скидка', code: generatePromoCode() },
-    { points: 1000000, reward: '0.5 грамм', code: generatePromoCode() },
-    { points: 2000000, reward: '0.7 грамм', code: generatePromoCode() },
-    { points: 3000000, reward: '1 грамм', code: generatePromoCode() }
+    { points: 1510, reward: '5% скидка', code: generatePromoCode() },
+    { points: 1520, reward: '10% скидка', code: generatePromoCode() },
+    { points: 1530, reward: '20% скидка', code: generatePromoCode() },
+    { points: 1540, reward: '25% скидка', code: generatePromoCode() },
+    { points: 1550, reward: '50% скидка', code: generatePromoCode() },
+    { points: 1560, reward: '0.5 грамм', code: generatePromoCode() },
+    { points: 1570, reward: '0.7 грамм', code: generatePromoCode() },
+    { points: 1580, reward: '1 грамм', code: generatePromoCode() }
 ];
 
 const telegramBotToken = '7234287467:AAGaT2z1qI-rdIf2RzTZmJRrqnqK5z4pJb4'';
