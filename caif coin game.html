@@ -84,7 +84,7 @@
         GAME OVER
         <button id="restartButton">Restart</button>
     </div>
-    <audio id="catchSound" src="Catch.mp3"></audio>
+    <audio id="catchSound" src="catch.mp3"></audio>
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -244,6 +244,13 @@
             document.getElementById('restartButton').style.display = 'none';
             animate();
         });
+
+        // Инициализация звука на мобильных устройствах
+        document.body.addEventListener('touchstart', () => {
+            document.getElementById('catchSound').play().catch(error => {
+                console.log('Автовоспроизведение звука заблокировано: ', error);
+            });
+        }, { once: true });
 
         setInterval(spawnEgg, 1000);
         animate();
