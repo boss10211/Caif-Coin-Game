@@ -56,24 +56,3 @@ button {
 button:hover {
     background-color: #45a049;
 }
-
-.prizes {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.prizes h2 {
-    color: #ff6347;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.prizes ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.prizes li {
-    color: #4682b4;
-    font-family: 'Verdana', sans-serif;
-    margin: 5px 0;
-}
