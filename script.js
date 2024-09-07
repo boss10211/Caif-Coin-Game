@@ -1,13 +1,13 @@
 let score = 0;
 const prizes = [
-    { points: 10000, reward: '5% скидка', code: generatePromoCode() },
-    { points: 50000, reward: '10% скидка', code: generatePromoCode() },
-    { points: 100000, reward: '20% скидка', code: generatePromoCode() },
-    { points: 250000, reward: '25% скидка', code: generatePromoCode() },
-    { points: 500000, reward: '50% скидка', code: generatePromoCode() },
-    { points: 1000000, reward: '0.5 грамм', code: generatePromoCode() },
-    { points: 2000000, reward: '0.7 грамм', code: generatePromoCode() },
-    { points: 3000000, reward: '1 грамм', code: generatePromoCode() }
+    { points: 1250, reward: '5% скидка', code: generatePromoCode() },
+    { points: 1260, reward: '10% скидка', code: generatePromoCode() },
+    { points: 1270, reward: '20% скидка', code: generatePromoCode() },
+    { points: 1280, reward: '25% скидка', code: generatePromoCode() },
+    { points: 1290, reward: '50% скидка', code: generatePromoCode() },
+    { points: 1300, reward: '0.5 грамм', code: generatePromoCode() },
+    { points: 1310, reward: '0.7 грамм', code: generatePromoCode() },
+    { points: 1320, reward: '1 грамм', code: generatePromoCode() }
 ];
 
 function generatePromoCode() {
