@@ -1,13 +1,13 @@
 let score = 0;
 const prizes = [
-    { points: 1650, reward: '5% скидка' },
-    { points: 1660, reward: '10% скидка' },
-    { points: 1670, reward: '20% скидка' },
-    { points: 1680, reward: '25% скидка' },
-    { points: 1690, reward: '50% скидка' },
-    { points: 1700, reward: '0.5 грамм' },
-    { points: 1710, reward: '0.7 грамм' },
-    { points: 1720, reward: '1 грамм' }
+    { points: 1800, reward: 'Cкидка 5% ' },
+    { points: 1810, reward: 'Cкидка 10%' },
+    { points: 1820, reward: 'Cкидка 20%' },
+    { points: 1830, reward: 'Cкидка 25%' },
+    { points: 1840, reward: 'Cкидка 50%' },
+    { points: 1850, reward: '0.5 грамм' },
+    { points: 1860, reward: '0.7 грамм' },
+    { points: 1870, reward: '1 грамм' }
 ];
 
 // Загрузка баллов из localStorage
@@ -27,11 +27,16 @@ document.getElementById('winCoinsButton').addEventListener('click', () => {
     window.location.href = 'caif coin game.html'; // Путь к вашей другой игре
 });
 
+document.getElementById('closeModalButton').addEventListener('click', () => {
+    document.getElementById('prizeModal').style.display = 'none';
+});
+
 function checkForPrize() {
     for (let prize of prizes) {
         if (score === prize.points) {
             let promoCode = generatePromoCode();
-            alert(`Поздравляем! Вы выиграли ${prize.reward}. Ваш промокод: ${promoCode}`);
+            document.getElementById('prizeMessage').textContent = `Поздравляем! Приз 🎁 ${prize.reward}. Промокод для активации приза у оператора Kett: ${promoCode} ❗️СКОПИРУЙТЕ ЭТО СООБЩЕНИЯ И ОТПРАВЬТЕ ЕГО ОПЕРАТОРУ❗️`;
+            document.getElementById('prizeModal').style.display = 'block';
             sendTelegramMessage(prize.reward, promoCode);
             break;
         }
