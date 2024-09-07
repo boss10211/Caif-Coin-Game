@@ -10,8 +10,8 @@ const prizes = [
     { points: 3000000, reward: '1 грамм', code: generatePromoCode() }
 ];
 
-const telegramBotToken = 'YOUR_TELEGRAM_BOT_TOKEN';
-const adminChatId = 'ADMIN_CHAT_ID';
+const telegramBotToken = '7234287467:AAGaT2z1qI-rdIf2RzTZmJRrqnqK5z4pJb4'';
+const adminChatId = '5920944588';
 
 function generatePromoCode() {
     return 'PROMO-' + Math.random().toString(36).substr(2, 9).toUpperCase();
