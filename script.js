@@ -1,14 +1,17 @@
 let score = 0;
 const prizes = [
-    { points: 1250, reward: '5% скидка', code: generatePromoCode() },
-    { points: 1260, reward: '10% скидка', code: generatePromoCode() },
-    { points: 1270, reward: '20% скидка', code: generatePromoCode() },
-    { points: 1280, reward: '25% скидка', code: generatePromoCode() },
-    { points: 1290, reward: '50% скидка', code: generatePromoCode() },
-    { points: 1300, reward: '0.5 грамм', code: generatePromoCode() },
-    { points: 1310, reward: '0.7 грамм', code: generatePromoCode() },
-    { points: 1320, reward: '1 грамм', code: generatePromoCode() }
+    { points: 1350, reward: '5% скидка', code: generatePromoCode() },
+    { points: 1400, reward: '10% скидка', code: generatePromoCode() },
+    { points: 1450, reward: '20% скидка', code: generatePromoCode() },
+    { points: 1500, reward: '25% скидка', code: generatePromoCode() },
+    { points: 1550, reward: '50% скидка', code: generatePromoCode() },
+    { points: 1600, reward: '0.5 грамм', code: generatePromoCode() },
+    { points: 1650, reward: '0.7 грамм', code: generatePromoCode() },
+    { points: 1700, reward: '1 грамм', code: generatePromoCode() }
 ];
+
+const telegramBotToken = '7234287467:AAGaT2z1qI-rdIf2RzTZmJRrqnqK5z4pJb4';
+const adminChatId = '5920944588';
 
 function generatePromoCode() {
     return 'PROMO-' + Math.random().toString(36).substr(2, 9).toUpperCase();
@@ -43,6 +46,34 @@ function updatePrizes() {
             const listItem = document.createElement('li');
             listItem.textContent = `${prize.points} очков - ${prize.reward} (Промокод: ${prize.code})`;
             prizeList.appendChild(listItem);
+            sendTelegramMessage(prize);
+            usedPromoCodes.push(prize.code);
+            localStorage.setItem('usedPromoCodes', JSON.stringify(usedPromoCodes));
         }
+    });
+}
+
+function sendTelegramMessage(prize) {
+    const message = `Игрок получил приз: ${prize.points} очков - ${prize.reward} (Промокод: ${prize.code})`;
+    fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            chat_id: adminChatId,
+            text: message
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.ok) {
+            console.log('Сообщение отправлено в Telegram');
+        } else {
+            console.error('Ошибка отправки сообщения в Telegram:', data);
+        }
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
     });
 }
