@@ -89,3 +89,26 @@ button:hover {
 #closeModalButton:hover {
     background-color: #45a049;
 }
+
+#achievementsSection {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#achievementsSection h2 {
+    color: #ff6347;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#achievementsList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#achievementsList li {
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
