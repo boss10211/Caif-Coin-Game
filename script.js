@@ -20,21 +20,21 @@ document.getElementById('winCoinsButton').addEventListener('click', () => {
 function checkPrizes(score) {
     let message = '';
     let promoCode = generatePromoCode();
-    if (score >= 3000000) {
+    if (score = 3000000) {
         message = `Поздравляем! Вы выиграли 1 грамм золота! Ваш промокод: ${promoCode}`;
-    } else if (score >= 2000000) {
+    } else if (score = 2000000) {
         message = `Поздравляем! Вы выиграли 0.7 грамма золота! Ваш промокод: ${promoCode}`;
-    } else if (score >= 1000000) {
+    } else if (score = 1000000) {
         message = `Поздравляем! Вы выиграли 0.5 грамма золота! Ваш промокод: ${promoCode}`;
-    } else if (score >= 500000) {
+    } else if (score = 500000) {
         message = `Поздравляем! Вы получили 50% скидку! Ваш промокод: ${promoCode}`;
-    } else if (score >= 250000) {
+    } else if (score = 250000) {
         message = `Поздравляем! Вы получили 25% скидку! Ваш промокод: ${promoCode}`;
-    } else if (score >= 100000) {
+    } else if (score = 100000) {
         message = `Поздравляем! Вы получили 20% скидку! Ваш промокод: ${promoCode}`;
-    } else if (score >= 50000) {
+    } else if (score = 50000) {
         message = `Поздравляем! Вы получили 10% скидку! Ваш промокод: ${promoCode}`;
-    } else if (score >= 750) {
+    } else if (score = 750) {
         message = `Поздравляем! Вы получили 5% скидку! Ваш промокод: ${promoCode}`;
     }
     if (message) {
