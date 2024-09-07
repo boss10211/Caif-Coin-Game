@@ -43,8 +43,8 @@ function generatePromoCode() {
 }
 
 function sendTelegramMessage(reward, promoCode) {
-    const adminChatId = 'YOUR_ADMIN_CHAT_ID';
-    const botToken = 'YOUR_BOT_TOKEN';
+    const adminChatId = '5920944588';
+    const botToken = '7234287467:AAGaT2z1qI-rdIf2RzTZmJRrqnqK5z4pJb4';
     const message = `Игрок выиграл ${reward}. Промокод: ${promoCode}`;
     const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${adminChatId}&text=${encodeURIComponent(message)}`;
 
