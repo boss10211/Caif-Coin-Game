@@ -1,13 +1,13 @@
 let score = 0;
 const prizes = [
-    { points: 10000, reward: '5% скидка' },
-    { points: 50000, reward: '10% скидка' },
-    { points: 100000, reward: '20% скидка' },
-    { points: 250000, reward: '25% скидка' },
-    { points: 500000, reward: '50% скидка' },
-    { points: 1000000, reward: '0.5 грамм' },
-    { points: 2000000, reward: '0.7 грамм' },
-    { points: 3000000, reward: '1 грамм' }
+    { points: 1550, reward: '5% скидка' },
+    { points: 1560, reward: '10% скидка' },
+    { points: 1570, reward: '20% скидка' },
+    { points: 1580, reward: '25% скидка' },
+    { points: 1590, reward: '50% скидка' },
+    { points: 2000, reward: '0.5 грамм' },
+    { points: 2010, reward: '0.7 грамм' },
+    { points: 2020, reward: '1 грамм' }
 ];
 
 // Загрузка баллов из localStorage
