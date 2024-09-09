@@ -1,5 +1,5 @@
 let score = 0;
-const rewardMessage = 'ВЫ зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN';
+const rewardMessage = 'Вы зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN';
 
 let achievements = JSON.parse(localStorage.getItem('achievements')) || [];
 
