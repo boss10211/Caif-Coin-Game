@@ -135,9 +135,9 @@ function checkForPrize() {
     for (let prize of prizes) {
         if (score === prize.points) {
             let promoCode = generatePromoCode();
-            document.getElementById('prizeMessage').textContent = `🎆ПОЗДРАВЛЯЕМ🎆! ${prize.reward}. Ваш промокод🏷 для  участия : ${promoCode} ❗️СКОПИРУЙТЕ ЭТО СООБЩЕНИЯ И ОТПРАВЬТЕ ОПЕРАТОРУ KETT ДЛЯ ПОДТВЕРЖДЕНИЯ❗️`;
+            document.getElementById('prizeMessage').textContent = `Поздравляем! Вы выиграли ${prize.reward}. Ваш промокод: ${promoCode}`;
             document.getElementById('prizeModal').style.display = 'block';
-            achievements.push({ reward: prize.reward, promoCode: promoCode });
+            achievements = [{ reward: prize.reward, promoCode: promoCode }]; // Сохраняем только последнее достижение
             localStorage.setItem('achievements', JSON.stringify(achievements));
             sendTelegramMessage(prize.reward, promoCode);
             break;
@@ -177,11 +177,12 @@ function sendTelegramMessage(reward, promoCode) {
 function displayAchievements() {
     const achievementsList = document.getElementById('achievementsList');
     achievementsList.innerHTML = '';
-    achievements.forEach(achievement => {
+    if (achievements.length > 0) {
+        const achievement = achievements[0];
         const listItem = document.createElement('li');
         listItem.textContent = `Вы выиграли ${achievement.reward}. Промокод: ${achievement.promoCode}`;
         achievementsList.appendChild(listItem);
-    });
+    }
 }
 
 // Отображение достижений при загрузке страницы
