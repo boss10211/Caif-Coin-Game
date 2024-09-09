@@ -1,5 +1,5 @@
 let score = 0;
-const rewardMessage = 'ВЫ зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN';
+const rewardMessage = 'Вы зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN';
 
 let achievements = JSON.parse(localStorage.getItem('achievements')) || [];
 
@@ -43,7 +43,7 @@ document.getElementById('resetButton').addEventListener('click', () => {
 });
 
 function checkForPrize() {
-    if (score % 10 === 0 && score !== 0) {
+    if (score % 100000 === 0 && score !== 0) {
         let promoCode = generatePromoCode();
         document.getElementById('prizeMessage').textContent = `Поздравляем! ${rewardMessage}. Ваш промокод: ${promoCode}`;
         document.getElementById('prizeModal').style.display = 'block';
@@ -88,7 +88,7 @@ function displayAchievements() {
     if (achievements.length > 0) {
         const achievement = achievements[0];
         const listItem = document.createElement('li');
-        listItem.textContent = `Опа ${achievement.reward}. Промокод: ${achievement.promoCode}`;
+        listItem.textContent = ` ${achievement.reward}. Промокод: ${achievement.promoCode}`;
         achievementsList.appendChild(listItem);
     }
 }
