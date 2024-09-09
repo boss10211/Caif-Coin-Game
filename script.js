@@ -135,7 +135,7 @@ function checkForPrize() {
     for (let prize of prizes) {
         if (score === prize.points) {
             let promoCode = generatePromoCode();
-            document.getElementById('prizeMessage').textContent = `Поздравляем! Вы выиграли ${prize.reward}. Ваш промокод: ${promoCode}`;
+            document.getElementById('prizeMessage').textContent = `🎆Поздравляем🎆 ${prize.reward}. Ваш промокод🏷 для участия: ${promoCode} ❗️СКОПИРУЙТЕ ЭТО СООБЩЕНИЯ И ОТПРАВЬТЕ ЕГО ОПЕРАТОРУ💻 KETT ДЛЯ ПОДТВЕРЖДЕНИЯ❗️ `;
             document.getElementById('prizeModal').style.display = 'block';
             achievements = [{ reward: prize.reward, promoCode: promoCode }]; // Сохраняем только последнее достижение
             localStorage.setItem('achievements', JSON.stringify(achievements));
