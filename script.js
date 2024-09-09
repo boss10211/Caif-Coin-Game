@@ -1,7 +1,7 @@
 let score = 0;
 const prizes = [
     { points: 10, reward: 'ВЫ зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN' },
-    { points: 20, reward: 'ВЫ зарегистрированы в МЕГА РОЗЫГРЫШ🎁от CAIF COIN' },
+    { points: 20, reward: 'ВЫ зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN' },
     { points: 30, reward: 'ВЫ зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN' },
     { points: 40, reward: 'ВЫ зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN' },
     { points: 50, reward: 'ВЫ зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN' },
@@ -101,7 +101,6 @@ const prizes = [
     { points: 990, reward: 'ВЫ зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN' },
     { points: 1000, reward: 'ВЫ зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN' }
 ];
-
 let achievements = JSON.parse(localStorage.getItem('achievements')) || [];
 
 // Загрузка баллов из localStorage
