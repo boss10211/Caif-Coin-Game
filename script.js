@@ -1,5 +1,5 @@
 let score = 0;
-const rewardMessage = 'Вы зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN';
+const rewardMessage = 'ВЫ зарегистрированы в МЕГА РОЗЫГРЫШ🎁 от CAIF COIN';
 
 let achievements = JSON.parse(localStorage.getItem('achievements')) || [];
 
@@ -43,9 +43,9 @@ document.getElementById('resetButton').addEventListener('click', () => {
 });
 
 function checkForPrize() {
-    if (score % 10 === 0) {
+    if (score % 10 === 0 && score !== 0) {
         let promoCode = generatePromoCode();
-        document.getElementById('prizeMessage').textContent = `🎆Поздравляем🎆 ${prize.reward}. Ваш промокод🏷 для участия: ${promoCode} ❗️СКОПИРУЙТЕ ЭТО СООБЩЕНИЯ И ОТПРАВЬТЕ ЕГО ОПЕРАТОРУ💻 KETT ДЛЯ ПОДТВЕРЖДЕНИЯ❗️`;
+        document.getElementById('prizeMessage').textContent = `Поздравляем! ${rewardMessage}. Ваш промокод: ${promoCode}`;
         document.getElementById('prizeModal').style.display = 'block';
         achievements = [{ reward: rewardMessage, promoCode: promoCode }]; // Сохраняем только последнее достижение
         localStorage.setItem('achievements', JSON.stringify(achievements));
@@ -88,7 +88,7 @@ function displayAchievements() {
     if (achievements.length > 0) {
         const achievement = achievements[0];
         const listItem = document.createElement('li');
-        listItem.textContent = `Вы выиграли ${achievement.reward}. Промокод: ${achievement.promoCode}`;
+        listItem.textContent = `Опа ${achievement.reward}. Промокод: ${achievement.promoCode}`;
         achievementsList.appendChild(listItem);
     }
 }
