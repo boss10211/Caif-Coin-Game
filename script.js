@@ -180,7 +180,7 @@ function displayAchievements() {
     if (achievements.length > 0) {
         const achievement = achievements[0];
         const listItem = document.createElement('li');
-        listItem.textContent = `Вы выиграли ${achievement.reward}. Промокод: ${achievement.promoCode}`;
+        listItem.textContent = `✅ ${achievement.reward}. Промокод: ${achievement.promoCode}`;
         achievementsList.appendChild(listItem);
     }
 }
