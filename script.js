@@ -1,10 +1,10 @@
 let score = 0;
 const prizes = [
-    { points: 10000, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' },
-    { points: 50000, reward: '10% скидка' },
     { points: 1, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' },
-    { points: 2, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' },
+    { points: 3, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' },
     { points: 5, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' },
+    { points: 7, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' },
+    { points: 9, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' },
     { points: 10, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' },
     { points: 20, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' },
     { points: 30, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' },
