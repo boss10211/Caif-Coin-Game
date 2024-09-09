@@ -74,7 +74,7 @@ button:hover {
     text-align: center;
 }
 
-#closeModalButton, #closeAchievementsButton, #resetButton {
+#closeModalButton, #closeAchievementsButton {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
@@ -86,6 +86,6 @@ button:hover {
     transition: background-color 0.3s;
 }
 
-#closeModalButton:hover, #closeAchievementsButton:hover, #resetButton:hover {
+#closeModalButton:hover, #closeAchievementsButton:hover {
     background-color: #45a049;
 }
