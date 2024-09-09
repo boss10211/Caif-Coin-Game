@@ -97,6 +97,8 @@ const prizes = [
     { points: 890, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' },
     { points: 900, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' },
     { points: 910, reward: 'Вы зарегистрированы в мега розыгрыш 🎁 от CAIF COIN' }
+];
+
 let achievements = JSON.parse(localStorage.getItem('achievements')) || [];
 
 // Загрузка баллов из localStorage
@@ -129,27 +131,15 @@ document.getElementById('closeAchievementsButton').addEventListener('click', () 
     document.getElementById('achievementsModal').style.display = 'none';
 });
 
-document.getElementById('resetButton').addEventListener('click', () => {
-    score = 0;
-    achievements = [];
-    localStorage.removeItem('totalScore');
-    localStorage.removeItem('achievements');
-    document.getElementById('score').textContent = score;
-    document.getElementById('gameOverModal').style.display = 'none';
-});
-
 function checkForPrize() {
-    for (let i = 0; i < prizes.length; i++) {
-        if (score === prizes[i].points) {
+    for (let prize of prizes) {
+        if (score === prize.points) {
             let promoCode = generatePromoCode();
-            document.getElementById('prizeMessage').textContent = `Поздравляем! Вы выиграли ${prizes[i].reward}. Ваш промокод: ${promoCode}`;
+            document.getElementById('prizeMessage').textContent = `Поздравляем! Вы выиграли ${prize.reward}. Ваш промокод: ${promoCode}`;
             document.getElementById('prizeModal').style.display = 'block';
-            achievements = [{ reward: prizes[i].reward, promoCode: promoCode }]; // Сохраняем только последнее достижение
+            achievements = [{ reward: prize.reward, promoCode: promoCode }]; // Сохраняем только последнее достижение
             localStorage.setItem('achievements', JSON.stringify(achievements));
-            sendTelegramMessage(prizes[i].reward, promoCode);
-            if (i === prizes.length - 1) {
-                document.getElementById('gameOverModal').style.display = 'block';
-            }
+            sendTelegramMessage(prize.reward, promoCode);
             break;
         }
     }
@@ -159,7 +149,13 @@ function generatePromoCode() {
     return 'PROMO' + Math.random().toString(36).substr(2, 9).toUpperCase();
 }
 
-fetch(url)
+function sendTelegramMessage(reward, promoCode) {
+    const adminChatId = '5920944588';
+    const botToken = '7234287467:AAGaT2z1qI-rdIf2RzTZmJRrqnqK5z4pJb4';
+    const message = `Игрок выиграл ${reward}. Промокод: ${promoCode}`;
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${adminChatId}&text=${encodeURIComponent(message)}`;
+
+    fetch(url)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
@@ -184,4 +180,10 @@ function displayAchievements() {
     if (achievements.length > 0) {
         const achievement = achievements[0];
         const listItem = document.createElement('li');
-        listItem.textContent = `Вы выиграли ${achievement
+        listItem.textContent = `Вы выиграли ${achievement.reward}. Промокод: ${achievement.promoCode}`;
+        achievementsList.appendChild(listItem);
+    }
+}
+
+// Отображение достижений при загрузке страницы
+displayAchievements();
