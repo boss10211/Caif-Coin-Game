@@ -43,7 +43,7 @@ document.getElementById('resetButton').addEventListener('click', () => {
 });
 
 function checkForPrize() {
-    if (score % 100 === 0 && score !== 0) {
+    if (score % 100000 === 0 && score !== 0) {
         let promoCode = generatePromoCode();
         document.getElementById('prizeMessage').textContent = `Поздравляем! ${rewardMessage}. Ваш промокод: ${promoCode}`;
         document.getElementById('prizeModal').style.display = 'block';
