@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Колесо фортуны</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('https://umbphotos.ag/images/375b18fa3ffcc616179b8cf6ed4732c6.webp'); /* Вставьте ссылку на изображение заднего фона здесь */
+            background-size: cover;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        input {
+            box-sizing: border-box;
+            width: 250px;
+            margin: 0;
+            padding: 0.5rem 1rem;
+            text-align: center;
+        }
+        button {
+            width: 250px;
+            margin: 0;
+            padding: 0.75rem 1rem;
+            background-color: orangered;
+            color: white;
+            border: none;
+            border-radius: 1.25rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #wheel {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 5px solid black;
+            background-image: url('https://umbphotos.ag/images/84719fb9ad4a8eea00d2ef64eb0e2f46.png'); /* Вставьте ссылку на изображение колеса здесь */
+            background-size: cover;
+        }
+        @media (max-width: 768px) {
+            #wheel {
+                width: 340px;
+                height: 340px;
+            }
+        }
+        .sector {
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0% 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sector div {
+            transform: rotate(-90deg);
+            text-align: center;
+            color: white; /* Измените цвет текста при необходимости */
+        }
+        #pointer {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            top: -555px;
+            left: 0px;
+            background-image: url('https://umbphotos.ag/images/9cc6606514ef30a4ed960949f3a84afd.png'); /* Вставьте ссылку на изображение указателя здесь */
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 10; /* Указатель на переднем плане */
+        }
+        @media (max-width: 768px) {
+            #pointer {
+                width: 30px;
+                height: 30px;
+                top: -375px;
+            }
+        }
+        #spinButton, #inputPromoCode, #inputNumber {
+            margin-top: 20px;
+        }
+        /* Стили для модальных окон */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 20px;
+        }
+        .modal.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="wheel"></div>
+    <div id="pointer"></div>
+    <div id="fixed-point"></div>
+    <input type="text" id="inputPromoCode" placeholder="Введите промокод">
+    <input type="number" id="inputNumber" placeholder="Введите число от 0 до 36">
+    <button id="spinButton">Крутить рулетку</button>
+
+    <!-- Модальное окно для сообщений -->
+    <div id="modal" class="modal">
+        <p id="modalMessage"></p>
+        <button onclick="closeModal()">OK</button>
+    </div>
+
+    <script>
+        const sectors = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
+        const wheel = document.getElementById('wheel');
+        const numSectors = sectors.length;
+        const anglePerSector = 360 / numSectors;
+
+        sectors.forEach((sector, index) => {
+            const sectorDiv = document.createElement('div');
+            sectorDiv.classList.add('sector');
+            sectorDiv.style.transform = `rotate(${index * anglePerSector}deg) skewY(-${90 - anglePerSector}deg)`;
+            sectorDiv.innerHTML = `<div style="transform: skewY(${90 - anglePerSector}deg) rotate(${anglePerSector / 2}deg);">${sector}</div>`;
+            wheel.appendChild(sectorDiv);
+        });
+
+        const promoCodes = [
+            'X7Y68Z9A1', 'B26C3D4E5', 'F6G7H8I69', 'J0K61L2M3', 'N4O5P66Q7',
+            'R8S96T0U1', 'V2W3X64Y5', 'Z6A67B8C9', 'D0E1F2G63', 'H4I56J6K7',
+            'L8M9N60O1', 'P2Q36R4S5', 'T66U7V8W9', 'X06Y1Z2A3', 'B64C5D6E7',
+            'F68G9H0I1', 'J2K3L4M56', 'N6O7P86Q9', 'R0S1T62U3', 'V4W5X66Y7',
+            'Z86A9B0C1', 'D2E3F4G56', 'H6I67J8K9', 'L0M16N2O3', 'P4Q65R6S7',
+            'T8U96V0W1', 'X26Y3Z4A5', 'B66C7D8E9', 'F0G61H2I3', 'J4K65L6M7',
+            'N8O69P0Q1', 'R2S3T46U5', 'V6W76X8Y9', 'Z0A16B2C3', 'D4E5F6G67',
+            'H8I9J60K1', 'L2M63N4O5', 'P6Q7R86S9', 'T0U61V2W3', 'X4Y65Z6A7',
+            'B8C96D0E1', 'F2G3H46I5', 'J6K7L8M69', 'N0O1P62Q3', 'R46S5T6U7',
+            'V8W69X0Y1', 'Z2A36B4C5', 'D6E7F86G9', 'H0I16J2K3', 'L46M5N6O7',
+            'P8Q96R0S1', 'T2U36V4W5', 'X6Y76Z8A9', 'B0C16D2E3', 'F4G56H6I7',
+            'J8K9L06M1', 'N2O3P64Q5', 'R6S76T8U9', 'V0W1X62Y3', 'Z4A56B6C7',
+            'D8E9F60G1', 'H2I36J4K5', 'L6M7N86O9', 'P0Q1R26S3', 'T4U56V6W7'
+            /* Добавьте остальные 97 промокодов сюда */
+        ];
+
+        function isPromoCodeUsed(code) {
+            return localStorage.getItem(code) === 'used';
+        }
+
+        function markPromoCodeAsUsed(code) {
+            localStorage.setItem(code, 'used');
+        }
+
+        function sendTelegramMessage(message) {
+            const botToken = '8008015596:AAFTW7kNZNwu35LeChE12frbAHo6VkAeQvY';
+            const chatId = '7885741135';
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                })
+            });
+        }
+
+        function showModal(message) {
+            const modal = document.getElementById('modal');
+            const modalMessage = document.getElementById('modalMessage');
+            modalMessage.textContent = message;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+        }
+
+        // Add a counter to track the number of spins
+        let spinCounter = 0;
+        
+        document.getElementById('spinButton').addEventListener('click', () => {
+            const playerPromoCode = document.getElementById('inputPromoCode').value;
+            const playerNumber = parseInt(document.getElementById('inputNumber').value);
+
+            if (!promoCodes.includes(playerPromoCode) || isPromoCodeUsed(playerPromoCode)) {
+                showModal('Неверный или уже использованный промокод');
+                return;
+            }
+
+            if (isNaN(playerNumber) || playerNumber < 0 || playerNumber > 36) {
+                showModal('Пожалуйста, введите число от 0 до 36');
+                return;
+            }
+
+            // Increment spin counter
+            spinCounter++;
+            
+            // Determine if this spin should be a win or loss
+            const shouldWin = spinCounter % 2 === 0; // Even spins win, odd spins lose
+            
+            // Помечаем использованный промокод как использованный
+            markPromoCodeAsUsed(playerPromoCode);
+
+            // Reset wheel to initial position with no transition
+            wheel.style.transition = 'none';
+            wheel.style.transform = 'rotate(0deg)';
+            
+            // Force a reflow to ensure the reset takes effect immediately
+            wheel.offsetHeight;
+            
+            // Find the index of the player's number in the sectors array
+            const playerNumberIndex = sectors.indexOf(playerNumber);
+            
+            // Calculate the angle needed to land on the player's number
+            const targetAngle = playerNumberIndex * anglePerSector;
+            
+            // For a win, we want to land on the player's number
+            // For a loss, we want to land on any number except the player's number
+            let finalAngle;
+            let winningIndex;
+            
+            if (shouldWin) {
+                // For a win, calculate angle to land on player's number
+                finalAngle = 360 - targetAngle + (anglePerSector / 2);
+                winningIndex = playerNumberIndex;
+            } else {
+                // For a loss, pick a random number that's not the player's number
+                let randomIndex;
+                do {
+                    randomIndex = Math.floor(Math.random() * sectors.length);
+                } while (randomIndex === playerNumberIndex);
+                
+                finalAngle = 360 - (randomIndex * anglePerSector) + (anglePerSector / 2);
+                winningIndex = randomIndex;
+            }
+            
+            // Add multiple rotations for effect
+            const totalRotation = finalAngle + (3600); // 10 full rotations plus the final angle
+            
+            // Now apply the spin with transition
+            wheel.style.transition = 'transform 4s ease-out';
+            wheel.style.transform = `rotate(${totalRotation}deg)`;
+
+            setTimeout(() => {
+                const winningNumber = sectors[winningIndex];
+
+                const resultMessage = `Игрок с промокодом ${playerPromoCode} выбрал число ${playerNumber}. Выпало число ${winningNumber}. ${
+                    playerNumber === winningNumber ? 'Игрок выиграл скидку 50%!' : 'Игрок проиграл.'
+                }`;
+
+                sendTelegramMessage(resultMessage);
+
+                if (playerNumber === winningNumber) {
+                    showModal('Поздравляем! Вы выиграли скидку 50%. Скиньте ваш промокод оператору Кеtt!');
+                } else {
+                    showModal(`Вы проиграли. Выпало число: ${winningNumber}`);
+                }
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
